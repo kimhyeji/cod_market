@@ -6,12 +6,14 @@ import com.cod.market.question.entity.Question;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@ToString
 public class Product extends BaseEntity {
     private String name;
     private String description;
