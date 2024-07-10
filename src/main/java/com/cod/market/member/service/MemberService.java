@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,5 +27,15 @@ public class MemberService {
         memberRepository.save(member);
 
         return member;
+    }
+
+    public Member findByUserName(String username) {
+        Optional<Member> member = memberRepository.findByUsername(username);
+
+        if ( member.isPresent() ) {
+            return member.get();
+        } else {
+            throw new RuntimeException("member not found");
+        }
     }
 }
