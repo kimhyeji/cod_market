@@ -2,10 +2,7 @@ package com.cod.market.member.entity;
 
 import com.cod.market.base.BaseEntity;
 import com.cod.market.qustion.entity.Question;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -25,5 +22,7 @@ public class Member extends BaseEntity {
     private String nickname;
     private String email;
     private String isActive;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
     private List<Question> questionList;
 }
