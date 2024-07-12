@@ -6,12 +6,14 @@ import com.cod.market.question.entity.Question;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@SuperBuilder
 public class Member extends BaseEntity {
     private String username;
     private String password;

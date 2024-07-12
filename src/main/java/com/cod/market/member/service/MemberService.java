@@ -17,12 +17,12 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
     public Member join(String username, String password, String email, String nickname) {
-        Member member = new Member();
-        member.setUsername(username);
-        member.setPassword(passwordEncoder.encode(password));
-        member.setEmail(email);
-        member.setNickname(nickname);
-        member.setCreateDate(LocalDateTime.now());
+        Member member = Member.builder()
+            .username(username)
+            .password(password)
+            .email(email)
+            .nickname(nickname)
+            .build();
 
         memberRepository.save(member);
 
@@ -32,7 +32,7 @@ public class MemberService {
     public Member findByUserName(String username) {
         Optional<Member> member = memberRepository.findByUsername(username);
 
-        if ( member.isPresent() ) {
+        if (member.isPresent()) {
             return member.get();
         } else {
             throw new RuntimeException("member not found");
