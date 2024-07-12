@@ -24,6 +24,7 @@ public class Product extends BaseEntity {
 
     @ManyToOne
     private Market market;
+
     @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
     private List<Question> questionList;
 
