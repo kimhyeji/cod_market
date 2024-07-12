@@ -2,14 +2,16 @@
 <html layout:decorate="~{/layout/layout}">
 <section layout:fragment="content" class="section-prod-list">
     <div class="container">
-        <h1 class="text-[1.5rem] font-bold">강의 리스트</h1>
-        <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[20px] mt-3">
-            <li th:each="product, loop : ${paging}" class="flex flex-col">
-                <a th:href="@{|/product/detail/${product.id}|}" data-before="VIEW MORE">
-                    <img class="block w-full" src="https://i.imgur.com/PVsCFy1.png" alt="">
+        <h1 class="text-[1.5rem] font-bold flex justify-center pt-5 pb-5">강의 리스트</h1>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-3">
+            <li th:each="product, loop : ${paging}" class="flex flex-col group xl:w-[300px] w-full">
+                <a th:href="@{|/product/detail/${product.id}|}"
+                   class="border border-black h-[250px] transition duration-300 rounded-lg hover:rounded-lg hover:-translate-y-1.5 hover:transition hover:duration-300 hover:shadow-md"
+                >
+                    <img class="object-cover object-center block w-full h-full rounded-lg" src="https://i.imgur.com/PVsCFy1.png" alt="">
                 </a>
-                <a th:href="@{|/product/detail/${product.id}|}" th:text="${product.name}" class="text-center mt-2"></a>
-                <a th:href="@{|/product/detail/${product.id}|}" th:text="${product.price}+원" class="text-center mt-2"></a>
+                <a th:href="@{|/product/detail/${product.id}|}" th:text="${product.name}" class="text-center md:!text-left mt-2"></a>
+                <a th:href="@{|/product/detail/${product.id}|}" th:text="${product.price}+원" class="text-center md:!text-left"></a>
             </li>
         </ul>
 
@@ -41,20 +43,18 @@
         </form>
     </div>
     <script layout:fragment="script" type="text/javascript">
-        $(document).ready(function() {
-       // .page-link 클래스를 가진 모든 요소에 클릭 이벤트 리스너 추가
-       $('.page-link').on('click', function() {
-           $('#page').val($(this).data('page')); // 클릭된 요소의 data-page 값을 page 입력 요소에 설정
-           $('#searchForm').submit(); // searchForm 폼 제출
-       });
+        $(document).ready(function () {
+            $(".page-link").on("click", function () {
+                $("#page").val($(this).data("page"));
+                $("#searchForm").submit();
+            });
 
-       // btn_search 요소에 클릭 이벤트 리스너 추가
-       $('#btn_search').on('click', function() {
-           $('#kw').val($('#search_kw').val()); // search_kw 입력 요소의 값을 kw 입력 요소에 설정
-           $('#page').val(0); // 페이지 값을 0으로 설정하여 첫 페이지부터 조회하도록 함
-           $('#searchForm').submit(); // searchForm 폼 제출
-       });
-   });
+            $("#btn_search").on("click", function () {
+                $("#kw").val($("#search_kw").val());
+                $("#page").val(0);
+                $("#searchForm").submit();
+            });
+        });
     </script>
-</section>
+</section>?
 </html>
