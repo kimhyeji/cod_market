@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -37,7 +38,7 @@ public class ProductService {
         String thumbnailRelPath = genFileDirPath;
 
         try {
-            thumbnail.transferTo(new File(genFileDirPath+"/1.jpg"));
+            thumbnail.transferTo(new File(genFileDirPath + "/" + UUID.randomUUID().toString() + ".jpg"));
         } catch ( IOException e) {
             throw new RuntimeException(e);
         }
