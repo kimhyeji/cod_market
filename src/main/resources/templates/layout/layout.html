@@ -65,7 +65,7 @@
                         <a class="nav-link" sec:authorize="hasAuthority('ADMIN')" href="/adm">관리자 홈</a>
                     </li>
                 </ul>
-                <div class="text-white mr-5 mb-3 md:!mb-0" sec:authorize="isAuthenticated()" th:text="@{|${#authentication.name}님|}"></div>
+                <div class="text-white mr-5 mb-3 md:!mb-0" sec:authorize="isAuthenticated()" th:text="@{|${#authentication.principal.nickname}님|}"></div>
                 <form class="d-flex">
                     <input class="form-control me-2" type="text" id="search_kw" th:value="${kw}" placeholder="상품명을 입력해주세요." aria-label="Search">
                     <button class="btn btn-outline-light whitespace-nowrap" type="button" id="btn_search">검색</button>

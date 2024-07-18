@@ -60,6 +60,7 @@ public class ProductService {
                 .title(title)
                 .description(description)
                 .price(price)
+                .thumbnailImg("product/9f0ad987-997c-4344-8f33-27210dc928b0.jpg")
                 .build();
         productRepository.save(p);
     }

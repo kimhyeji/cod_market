@@ -22,11 +22,7 @@ public class AdmProductController {
 
     @GetMapping("/create")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String create(Model model) {
-        List<Product> productList = productService.getList();
-
-        model.addAttribute("productList", productList);
-
+    public String create() {
         return "adm/product/create";
     }
 

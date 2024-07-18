@@ -1,28 +1,16 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>컨텐츠 생성 페이지</h1>
+<!DOCTYPE html>
+<html layout:decorate="~{/layout/layout}">
+<section layout:fragment="content" class="flex-1 flex justify-center items-center">
+    <div class="container">
+        <h1>컨텐츠 생성 페이지</h1>
 
-    <form th:action="@{/adm/product/create}" method="POST" enctype="multipart/form-data">
-        제목 : <input type="text" name="title"><br>
-        내용 : <input type="text" name="description"><br>
-        가격 : <input type="number" name="price"><br>
-        썸네일 : <input type="file" name="thumbnail" accept="image/png, image/gif, image/jpeg"><br>
-        <button type="submit">전송</button>
-    </form>
-
-    <ul th:each="product : ${productList}">
-        <li th:text="${product.title}"></li>
-        <li th:text="${product.description}"></li>
-        <li th:text="${#numbers.formatInteger(product.price, 3, 'COMMA') + '원'}"></li>
-        <li><img th:src="@{|/gen/${product.thumbnailImg}|}" alt="test이미지"></li>
-    </ul>
-</body>
+        <form th:action="@{/adm/product/create}" method="POST" enctype="multipart/form-data">
+            <input class="form-control" type="text" name="title">
+            <input class="form-control" type="text" name="description"><br>
+            <input class="form-control" type="number" name="price"><br>
+            <input type="file" name="thumbnail" accept="image/png, image/gif, image/jpeg"><br>
+            <button type="submit">전송</button>
+        </form>
+    </div>
+</section>
 </html>
