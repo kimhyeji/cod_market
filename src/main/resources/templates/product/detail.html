@@ -33,7 +33,7 @@
                 </li>
                 <li class="list-group-item">
                     <span>가격 : </span>
-                    <span th:text="${product.price}"></span>원
+                    <span th:text="${#numbers.formatInteger(product.price, 3, 'COMMA') + '원'}"></span>
                 </li>
                 <li class="list-group-item">
                     <span>마켓 : </span>
@@ -49,11 +49,7 @@
 
             <div class="card-body">
                 <form th:action="@{|/cart/add/${product.id}|}" method="POST">
-                    <input type="submit" value="장바구니 담기" class="btn btn-outline-dark">
-                </form>
-                <form th:action="@{/order/detail}">
-                    <input type="hidden" name="productId" th:value="${product.id}">
-                    <input type="submit" value="수강신청" class="btn btn-outline-dark">
+                    <input type="submit" onclick="if ( confirm('장바구니로 이동하시겠습니까?')  == false ) { return false; }" value="장바구니 담기" class="btn btn-outline-dark">
                 </form>
             </div>
         </div>

@@ -21,7 +21,7 @@
     <ul th:each="product : ${productList}">
         <li th:text="${product.title}"></li>
         <li th:text="${product.description}"></li>
-        <li th:text="${product.price}"></li>
+        <li th:text="${#numbers.formatInteger(product.price, 3, 'COMMA') + '원'}"></li>
         <li><img th:src="@{|/gen/${product.thumbnailImg}|}" alt="test이미지"></li>
     </ul>
 </body>

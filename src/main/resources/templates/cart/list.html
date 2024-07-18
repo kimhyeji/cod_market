@@ -31,11 +31,8 @@
                         <td>
                             <a th:href="@{|/product/detail/${cartItem.product.id}|}" th:text="${cartItem.product.title}" th:attr="data-title=${cartItem.product.title}"></a>
                         </td>
-                        <td th:text="${cartItem.product.price}" th:attr="data-price=${cartItem.product.price}"></td>
+                        <td th:text="${#numbers.formatInteger(cartItem.product.price, 3, 'COMMA') + '원'}" th:attr="data-price=${cartItem.product.price}"></td>
                         <td>
-<!--                            <a href="#"-->
-<!--                               th:attr="onclick=|pay('${cartItem.product.title}', ${cartItem.product.price})|"-->
-<!--                               class="btn btn-link">구매</a>-->
                             <a href="#" type="button" class="btn btn-link">삭제</a>
                         </td>
                     </tr>
@@ -76,19 +73,23 @@
             let price = 0;
 
             $('.form-1__checkbox-item:checked').each(function() {
-                let dataTitle = $(this).closest('tr').find('[data-title]').data('title');
-                let dataPrice = $(this).closest('tr').find('[data-price]').data('price');
+                let $row = $(this).closest('tr');
+                let dataTitle = $row.find('[data-title]').data('title');
+                let dataPrice = parseFloat($row.find('[data-price]').data('price'));
 
                 titles.push(dataTitle);
                 price += parseFloat(dataPrice);
             });
 
+            price = Math.round(price);
+
             if (price > 0) {
-                $('#total-price').text('총합: ' + Math.round(price) + ' 원');
+                $('#total-price').text('총합: ' + price.toLocaleString() + ' 원');
             } else {
                 $('#total-price').text(' 0원');
             }
 
+            price = Math.round(price);
             let titlesString = titles.join(", ");
 
             return {titlesString, price};
@@ -98,7 +99,7 @@
         $('.btn-purchase').on('click', function(e) {
             e.preventDefault();
             let result = calculateTotal();
-            pay(result.titlesString, result.price)
+            pay(result.titlesString, result.price);
         });
 
 
@@ -112,8 +113,8 @@
         let orderId = new Date().getTime();
 
         function pay(title, price) {
-            price = Math.round(price);
-            console.log("toss : " + title, price);
+
+            if (price == 0) { alert('상품을 선택해주세요'); }
             const method = "카드";
 
             const requestJson = {

@@ -31,15 +31,6 @@ public class OrderController {
     private final ProductService productService;
     private final OrderService orderService;
 
-    @GetMapping("/detail")
-    public String detail(Model model, @RequestParam("productId") Long productId) {
-        Product product = productService.getProduct(productId);
-
-        model.addAttribute("product", product);
-
-        return "order/detail";
-    }
-
     @GetMapping("/success")
     public String paymentResult(
             Model model,
@@ -104,8 +95,8 @@ public class OrderController {
     @GetMapping("/fail")
     public String paymentResult(
             Model model,
-            @RequestParam(value = "message") String message,
-            @RequestParam(value = "code") Integer code
+            @RequestParam("message") String message,
+            @RequestParam("code") String code
     ) throws Exception {
 
         model.addAttribute("code", code);
