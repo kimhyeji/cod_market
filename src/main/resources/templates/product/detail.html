@@ -126,14 +126,13 @@
                         if (response.ok) {
                             alert('상품이 장바구니에 추가되었습니다.');
                             if (confirm('장바구니로 이동하시겠습니까?')) {
-                                window.location.href = '/cart/list'; // 장바구니 페이지로 이동
+                                window.location.href = '/cart/list';
                             }
                         } else {
                             alert('상품을 장바구니에 추가하는 데 실패했습니다.');
                         }
                     })
                     .catch(error => {
-                        console.error('Error:', error);
                         alert('상품을 장바구니에 추가하는 중 오류가 발생했습니다.');
                     });
                 }
