@@ -8,8 +8,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HomeController {
 
+//    @GetMapping("/home")
+//    public String index() {
+//        return "home/main";
+//    }
+//
+
     @GetMapping("/")
     public String index() {
-        return "home/main";
+        return "redirect:/product/list";
     }
 }
