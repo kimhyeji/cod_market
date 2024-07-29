@@ -1,4 +1,4 @@
-package com.cod.market.oder.entity;
+package com.cod.market.order.entity;
 
 import com.cod.market.base.entity.BaseEntity;
 import com.cod.market.product.entity.Product;

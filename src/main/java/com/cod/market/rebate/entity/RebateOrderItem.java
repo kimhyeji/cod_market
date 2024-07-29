@@ -1,8 +1,8 @@
 package com.cod.market.rebate.entity;
 
 import com.cod.market.base.entity.BaseEntity;
-import com.cod.market.oder.entity.Order;
-import com.cod.market.oder.entity.OrderItem;
+import com.cod.market.order.entity.Order;
+import com.cod.market.order.entity.OrderItem;
 import com.cod.market.product.entity.Product;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
