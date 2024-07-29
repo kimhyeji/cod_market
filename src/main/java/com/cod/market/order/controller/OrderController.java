@@ -25,8 +25,8 @@ import java.util.Base64;
 @RequestMapping("/order")
 @RequiredArgsConstructor
 public class OrderController {
-    @Value("${custom.paymentSecretKey}")
-    private String paymentSecretKey;
+//    @Value("${custom.paymentSecretKey}")
+    private String paymentSecretKey = "test_sk_Gv6Lj";
 
     private final ProductService productService;
     private final OrderService orderService;
