@@ -35,7 +35,7 @@ public class AdmProductController {
     ) {
         productService.create(title, description, price, thumbnail);
 
-        return "adm/product/create";
+        return "redirect:/product/list";
     }
 }
 

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout/layout}">
 <section layout:fragment="content" class="section-prod-list">
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.js"></script>
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.min.css" />
+
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -29,7 +32,8 @@
                 </li>
                 <li class="list-group-item">
                     <span>상품설명 : </span>
-                    <span th:text="${product.description}"></span>
+
+                    <div id="viewer"></div>
                 </li>
                 <li class="list-group-item">
                     <span>가격 : </span>
@@ -109,8 +113,20 @@
                     질문이 아직 없습니다.
                 </div>
             </ul>
-            <script>
+            <script th:inline="javascript">
+                const Viewer = toastui.Editor;
 
+                $(document).ready(function() {
+                  const contentFromServer = /*[[${product.description}]]*/ '';
+
+                  const viewer = new toastui.Editor({
+                      el: document.querySelector('#viewer'),
+                      height: '600px',
+                      initialValue: contentFromServer
+                    });
+                });
+
+                // 장바구니
                 function addToCartAndConfirm() {
                     const form = document.getElementById('add-to-cart-form');
                     const action = form.getAttribute('action');
