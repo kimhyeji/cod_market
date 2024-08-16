@@ -21,6 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Product extends BaseEntity {
     private String title;
+    @Column(nullable = false, length = 3000)
     private String description;
     private int price;
     private int hitCount;

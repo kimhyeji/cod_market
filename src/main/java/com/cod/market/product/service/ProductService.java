@@ -13,6 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,5 +79,28 @@ public class ProductService {
 
     public List<Product> getList() {
         return productRepository.findAll();
+    }
+
+    public String uploadImage(MultipartFile image) {
+        if (image.isEmpty()) {
+            return "";
+        }
+
+        String saveFilename = "tuiFile/" + UUID.randomUUID().toString() + ".jpg";
+        String fileFullPath = Paths.get(genFileDirPath + "/" + saveFilename).toString();
+
+        File dir = new File(genFileDirPath);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        try {
+            File uploadFile = new File(fileFullPath);
+            image.transferTo(uploadFile);
+            return saveFilename;
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

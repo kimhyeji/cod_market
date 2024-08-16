@@ -1,18 +1,12 @@
 package com.cod.market.product.controller;
 
-import com.cod.market.product.entity.Product;
 import com.cod.market.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -31,11 +25,17 @@ public class AdmProductController {
     public String createContent(
             @RequestParam("title") String title, @RequestParam("description") String description,
             @RequestParam("price") int price, @RequestParam("thumbnail") MultipartFile thumbnail
-
     ) {
         productService.create(title, description, price, thumbnail);
 
         return "redirect:/product/list";
+    }
+
+    @PostMapping("/image-upload")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @ResponseBody
+    public String uploadEditorImage(@RequestParam("image") final MultipartFile image) {
+        return productService.uploadImage(image);
     }
 }
 
